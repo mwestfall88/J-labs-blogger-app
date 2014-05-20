@@ -38,3 +38,6 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#Use paperclip for managing file attachments and uploading
+gem 'paperclip'
+
