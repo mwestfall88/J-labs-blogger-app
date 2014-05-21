@@ -41,3 +41,6 @@ gem 'spring',        group: :development
 #Use paperclip for managing file attachments and uploading
 gem 'paperclip'
 
+#Use sorcery for user authentication
+gem 'sorcery'
+
