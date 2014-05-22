@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
 	include ArticlesHelper
+	before_filter :require_login, except: [:index, :show]
 
 	def index
 		@articles = Article.all
@@ -18,6 +19,7 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
+		#@article.author_id = current_user.id  Need to figure out a way to add Author ownership
 		@article.save
 
 		flash.notice = "Article '#{@article.title}' Created"

@@ -12,9 +12,11 @@
 </p>
 <p><%= @article.body %></p>
 <br>
-<%= link_to "edit", edit_article_path(@article) %>
-<br>
-<%= link_to "delete", article_path(@article), data: {confirm: "Really delete the article?"}, method: :delete %>
+<% if logged_in? %>
+	<%= link_to "edit", edit_article_path(@article) %>
+	<br>
+	<%= link_to "delete", article_path(@article), data: {confirm: "Really delete the article?"}, method: :delete %>
+<% end %>
 <br>
 <br>
 <h3>Comments</h3>
