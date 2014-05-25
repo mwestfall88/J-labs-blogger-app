@@ -18,7 +18,7 @@
 		<hr>
 		<h6>
 			<% if logged_in? %>
-				<p>Logged in as 
+				<p> Logged in as 
 					<%= link_to current_user.username, author_path(current_user) %>
 					<%= link_to "(logout)", logout_path %>
 				</p>
