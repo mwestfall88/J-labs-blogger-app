@@ -20,6 +20,7 @@ class AuthorsController < ApplicationController
   # GET /authors/1
   # GET /authors/1.json
   def show
+    set_author
   end
 
   # GET /authors/new
@@ -34,9 +35,18 @@ class AuthorsController < ApplicationController
   # POST /authors
   # POST /authors.json
   def create
-    @author = Author.new(author_params)
-
-    respond_to do |format|
+    #detects whether username or email have been registered before
+    existing_email = Author.all.detect {|author| author[:email].downcase == author_params[:email].downcase}
+    existing_user = Author.all.detect {|author| author[:username].downcase == author_params[:username].downcase}
+    if existing_email
+        flash.notice = "#{existing_email.email} is already a registered email address"
+        redirect_to new_author_path
+    elsif existing_user
+        flash.notice = "Username #{existing_user.username} is already taken"
+        redirect_to new_author_path
+    else
+      @author = Author.new(author_params)
+      respond_to do |format|
       if @author.save
         format.html { redirect_to @author, notice: 'Author was successfully created.' }
         format.json { render :show, status: :created, location: @author }
@@ -45,6 +55,9 @@ class AuthorsController < ApplicationController
         format.json { render json: @author.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
   end
 
   # PATCH/PUT /authors/1

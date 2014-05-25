@@ -1,9 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Username:</strong>
+  <%= @author.username %>
+</p>
+<p>
   <strong>Email:</strong>
   <%= @author.email %>
 </p>
 
 <%= link_to 'Edit', edit_author_path(@author) %> |
 <%= link_to 'Back', authors_path %>
+<br>
+<h2>Articles</h2>
+<ul>
+	<% @author.articles.each do |article| %>
+		<li><%= link_to article.title, article_path(article) %></li>
+	<% end %>
+</ul>

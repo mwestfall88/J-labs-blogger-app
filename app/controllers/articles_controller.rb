@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
-		#@article.author_id = current_user.id  Need to figure out a way to add Author ownership
+		@article.author_id = current_user.id
 		@article.save
 
 		flash.notice = "Article '#{@article.title}' Created"

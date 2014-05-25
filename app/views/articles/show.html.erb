@@ -1,4 +1,11 @@
 <h1><%= @article.title %></h1>
+<h2>Written by 
+	<% if @article.author %>
+		<%= link_to @article.author.username, author_path(@article.author) %>
+	<% else %>
+		<em>--redacted--</em>
+	<% end %>
+</h2>
 <p>
 	Tags:
 	<% @article.tags.each do |tag| %>
